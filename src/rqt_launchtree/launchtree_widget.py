@@ -24,8 +24,8 @@ class LaunchtreeEntryItem(QTreeWidgetItem):
 		super(LaunchtreeEntryItem, self).__init__(*args, **kw)
 		self.inconsistent = False
 	def __ge__(self, other):
-		own_type_idx = map(lambda t: isinstance(self.instance, t), self._type_order).index(True)
-		other_type_idx = map(lambda t: isinstance(other.instance, t), self._type_order).index(True)
+		own_type_idx = list(map(lambda t: isinstance(self.instance, t), self._type_order)).index(True)
+		other_type_idx = list(map(lambda t: isinstance(other.instance, t), self._type_order)).index(True)
 		if own_type_idx != other_type_idx:
 			return own_type_idx >= other_type_idx
 		return self.text(0) >= other.text(0)
